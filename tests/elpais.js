@@ -1,4 +1,6 @@
+require("dotenv").config();
 const { Builder, By } = require("selenium-webdriver");
+const translateToEnglish = require("../utils/translator");
 const axios = require("axios");
 const fs = require("fs-extra");
 const path = require("path");
@@ -39,6 +41,9 @@ async function start() {
         console.log("First 5 Article Links:");
         console.log(links);
 
+        let spanishTitles = [];
+        let englishTitles = [];
+
         // create images folder
         await fs.ensureDir("images");
 
@@ -66,7 +71,9 @@ async function start() {
                 } catch {
                     title = "Title not found";
                 }
+
                 console.log("Title (Spanish):", title);
+                spanishTitles.push(title);
 
                 // ---------- CONTENT ----------
                 await driver.sleep(3000);
@@ -118,6 +125,50 @@ async function start() {
 
             } catch (err) {
                 console.log("Error reading article:", err.message);
+            }
+        }
+
+        // ================= TRANSLATION =================
+        console.log("\nTranslating Titles...\n");
+
+        for (let t of spanishTitles) {
+            let translated = await translateToEnglish(t);
+            englishTitles.push(translated);
+            console.log("EN:", translated);
+        }
+
+        // ================= WORD FREQUENCY ANALYSIS =================
+        console.log("\nRepeated Words (more than 2 times):\n");
+
+        let combinedText = englishTitles.join(" ").toLowerCase();
+        combinedText = combinedText.replace(/[^\w\s]/g, "");
+
+        let words = combinedText.split(/\s+/);
+        let freq = {};
+
+        for (let word of words) {
+            if (word.length < 3) continue;
+            freq[word] = (freq[word] || 0) + 1;
+        }
+
+        let repeated = false;
+        for (let word in freq) {
+            if (freq[word] > 2) {
+                console.log(`${word} → ${freq[word]} times`);
+                repeated = true;
+            }
+        }
+
+        if (!repeated) {
+            console.log("No words repeated more than 2 times.\n");
+            console.log("Top occurring words:");
+
+            let sorted = Object.entries(freq)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+            for (let [word, count] of sorted) {
+                console.log(`${word} → ${count} times`);
             }
         }
 
