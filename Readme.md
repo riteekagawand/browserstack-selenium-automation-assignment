@@ -25,6 +25,16 @@ Browsers tested:
 
 ---
 
+---
+
+## 🎥 Project Demo
+
+Click below to watch the automation running on real browsers:
+
+<video src="https://github.com/riteekagawand/browserstack-selenium-automation-assignment/execution-results/demo" controls width="700"></video>
+
+---
+
 ## 🧠 What This Assignment Demonstrates
 - Web Automation
 - DOM Handling
@@ -127,5 +137,3 @@ Riteeka Gawand
 ✔ Word frequency analysis implemented  
 ✔ Cross-browser testing implemented  
 ✔ BrowserStack execution verified  
-
-EOF
