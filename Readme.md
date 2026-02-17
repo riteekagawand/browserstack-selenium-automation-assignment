@@ -127,5 +127,3 @@ Riteeka Gawand
 ✔ Word frequency analysis implemented  
 ✔ Cross-browser testing implemented  
 ✔ BrowserStack execution verified  
-
-EOF
