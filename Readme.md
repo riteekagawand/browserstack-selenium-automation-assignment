@@ -1,4 +1,3 @@
-cat << 'EOF' > README.md
 # 📄 BrowserStack Automation Assignment  
 Automated scraping, translation, and cross-browser execution using Selenium + BrowserStack
 
@@ -47,6 +46,7 @@ Browsers tested:
 ---
 
 ## 📂 Project Structure
+```
 browserstack-assignment
 │
 ├── tests/
@@ -61,7 +61,7 @@ browserstack-assignment
 ├── execution-results/
 ├── .env
 └── README.md
-
+```
 ---
 
 ## ⚙️ Setup Instructions
