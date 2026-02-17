@@ -31,7 +31,7 @@ Browsers tested:
 
 Click below to watch the automation running on real browsers:
 
-<video src="https://github.com/riteekagawand/browserstack-selenium-automation-assignment/execution-results/demo" controls width="700"></video>
+<video src="https://github.com/user-attachments/assets/3477b20a-ff7d-4245-9e83-a4cb81763606" controls width="700"></video>
 
 ---
 
